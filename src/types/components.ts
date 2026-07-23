@@ -48,8 +48,19 @@ export interface SectionProps extends WithClassName {
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
+/** Visual style variant — independent of the HTML element rendered */
+export type HeadingVariant = "display" | "hero" | "section" | "card" | "eyebrow";
+
+/** Text alignment */
+export type HeadingAlign = "left" | "center" | "right";
+
 export interface HeadingProps extends WithClassName {
-  as?: HeadingLevel;
+  /** HTML heading element to render. Controls semantics, not visual size. */
+  level?: HeadingLevel;
+  /** Visual style to apply. Controls font size, weight, and colour. */
+  variant?: HeadingVariant;
+  /** Text alignment. Defaults to "left". */
+  align?: HeadingAlign;
   children: ReactNode;
 }
 

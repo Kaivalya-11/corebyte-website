@@ -119,8 +119,5 @@ function Container<E extends ElementType = "div">({
   );
 }
 
-// Named export for direct imports and tree-shaking
+// Named export — index.ts re-exports this as the public API
 export { Container };
-
-// Default export for convenience
-export default Container;
