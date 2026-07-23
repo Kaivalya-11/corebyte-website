@@ -1,13 +1,9 @@
-// ─────────────────────────────────────────────
-// CoreByte Studios — Homepage
-// Sprint 2 Phase 1: Foundation shell.
-// Sections will be assembled here in Sprint 3.
-// ─────────────────────────────────────────────
+import { Hero } from "@/components/sections/Hero";
 
 export default function Home() {
   return (
     <main>
-      {/* Sections assembled in Sprint 3 */}
+      <Hero />
     </main>
   );
 }
