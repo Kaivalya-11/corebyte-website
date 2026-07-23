@@ -1,24 +1,23 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import Link from "next/link";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 // ─────────────────────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────────────────────
 
-/** Visual style variant. */
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "icon";
+/** Visual style variant for the button. */
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 
-/** Size preset controlling padding, font size, and dimensions. */
-export type ButtonSize = "sm" | "md" | "lg";
+/** Size preset controlling padding, typography, and dimensions. */
+export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
-export interface ButtonBaseProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Visual style variant.
-   * - `primary`: Blue → Purple gradient, white text, hover lift & glow.
-   * - `secondary`: Transparent background, white border (20%), glass hover.
-   * - `ghost`: Transparent, subtle background hover.
-   * - `icon`: Circular icon button (e.g., social icons, arrows).
+   * - `primary`: Main CTA with Blue → Purple gradient, hover lift & glow.
+   * - `secondary`: Dark surface background with border and hover lift.
+   * - `outline`: Transparent background with white/20 border and glass hover.
+   * - `ghost`: Minimal transparent background with subtle text hover.
    *
    * @default "primary"
    */
@@ -27,53 +26,36 @@ export interface ButtonBaseProps {
   /**
    * Size preset.
    * - `sm`: Compact size (36px min-height).
-   * - `md`: Standard size (48px min-height / 16px x 32px padding per spec).
+   * - `md`: Standard CTA size (48px min-height / 16px × 32px padding).
    * - `lg`: Prominent size (56px min-height).
+   * - `icon`: Circular icon button (48px × 48px).
    *
    * @default "md"
    */
   size?: ButtonSize;
 
   /**
-   * Optional URL. When provided, the component renders a Next.js `<Link>`.
-   */
-  href?: string;
-
-  /**
-   * Indicates an external link. When `true` and `href` is provided,
-   * adds `target="_blank"` and `rel="noopener noreferrer"`.
+   * Controls loading state.
+   * Disables interactive behavior, sets `aria-busy="true"`, and displays
+   * a CSS animated spinner.
    *
    * @default false
    */
-  external?: boolean;
+  loading?: boolean;
 
-  /**
-   * Disables interaction and applies muted opacity.
-   *
-   * @default false
-   */
-  disabled?: boolean;
-
-  /**
-   * Additional Tailwind classes merged via `cn()`.
-   */
+  /** Additional Tailwind classes merged safely via `cn()`. */
   className?: string;
 
   children?: ReactNode;
 }
 
-type AnchorOrButtonProps = Omit<ComponentPropsWithoutRef<"button">, keyof ButtonBaseProps> &
-  Omit<ComponentPropsWithoutRef<"a">, keyof ButtonBaseProps>;
-
-export type ButtonProps = ButtonBaseProps & AnchorOrButtonProps;
-
 // ─────────────────────────────────────────────────────────────
-// Variant & Size Maps
+// Style Maps (Record types — no if/else chains or CVA)
 // ─────────────────────────────────────────────────────────────
 
 const BASE_CLASSES =
   "inline-flex items-center justify-center font-body font-medium select-none cursor-pointer " +
-  "transition-all duration-300 ease-out " +
+  "rounded-full transition-all duration-300 ease-out " +
   "focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 " +
   "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed " +
   "aria-disabled:opacity-50 aria-disabled:pointer-events-none";
@@ -87,18 +69,25 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
    */
   primary:
     "bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white " +
-    "rounded-full shadow-md " +
-    "hover:-translate-y-1 hover:shadow-glow hover:brightness-110 " +
+    "shadow-md hover:-translate-y-1 hover:shadow-glow hover:brightness-110 " +
     "active:scale-[0.98]",
 
   /**
-   * secondary — Secondary action (Design spec: Buttons.md)
-   * Border: White 20%, Transparent background
-   * Hover: Glass background, border opacity boost, lift 4px
-   * Click: Scale 0.98
+   * secondary — Secondary action on dark surface
+   * Dark surface background with border and glass hover effect
    */
   secondary:
-    "bg-transparent text-text border border-white/20 rounded-full " +
+    "bg-surface text-text border border-white/10 " +
+    "hover:bg-surface-raised hover:border-white/20 hover:-translate-y-1 " +
+    "active:scale-[0.98]",
+
+  /**
+   * outline — Border-only secondary action (Design spec: Buttons.md)
+   * Transparent background, 20% white border
+   * Hover: Glass background, 40% white border, lift 4px
+   */
+  outline:
+    "bg-transparent text-text border border-white/20 " +
     "hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 hover:backdrop-blur-md " +
     "active:scale-[0.98]",
 
@@ -107,57 +96,63 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
    * Hover: Glass hover background
    */
   ghost:
-    "bg-transparent text-text-muted hover:text-text rounded-full " +
+    "bg-transparent text-text-muted hover:text-text " +
     "hover:bg-white/10 active:scale-[0.98]",
-
-  /**
-   * icon — Circular action for social icons / arrows (Design spec: Buttons.md)
-   * 48px circular default container (md)
-   */
-  icon:
-    "rounded-full border border-white/10 bg-surface/50 text-text-muted " +
-    "hover:text-primary hover:border-primary/50 hover:bg-surface-raised hover:-translate-y-0.5 hover:shadow-glow " +
-    "active:scale-95",
 };
 
-const SIZE_CLASSES: Record<ButtonVariant, Record<ButtonSize, string>> = {
-  primary: {
-    sm: "px-4 py-2 text-xs md:text-sm min-h-[36px] gap-2",
-    md: "px-8 py-4 text-sm md:text-base min-h-[48px] gap-2.5", // 16px x 32px per spec
-    lg: "px-10 py-5 text-base md:text-lg min-h-[56px] gap-3",
-  },
-  secondary: {
-    sm: "px-4 py-2 text-xs md:text-sm min-h-[36px] gap-2",
-    md: "px-8 py-4 text-sm md:text-base min-h-[48px] gap-2.5",
-    lg: "px-10 py-5 text-base md:text-lg min-h-[56px] gap-3",
-  },
-  ghost: {
-    sm: "px-3 py-1.5 text-xs md:text-sm min-h-[36px] gap-2",
-    md: "px-6 py-3 text-sm md:text-base min-h-[48px] gap-2.5",
-    lg: "px-8 py-4 text-base md:text-lg min-h-[56px] gap-3",
-  },
-  icon: {
-    sm: "w-9 h-9 p-2 text-sm",
-    md: "w-12 h-12 p-3 text-base", // 48px circular per spec
-    lg: "w-14 h-14 p-4 text-lg",
-  },
+const SIZE_CLASSES: Record<ButtonSize, string> = {
+  sm: "px-4 py-2 text-xs md:text-sm min-h-[36px] gap-2",
+  md: "px-8 py-4 text-sm md:text-base min-h-[48px] gap-2.5", // 16px x 32px padding per spec
+  lg: "px-10 py-5 text-base md:text-lg min-h-[56px] gap-3",
+  icon: "w-12 h-12 p-3 text-base aspect-square shrink-0", // 48px circular per spec
 };
+
+// ─────────────────────────────────────────────────────────────
+// Loading Spinner (CSS-only animation)
+// ─────────────────────────────────────────────────────────────
+
+function LoadingSpinner() {
+  return (
+    <svg
+      className="animate-spin h-4 w-4 text-current shrink-0"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      />
+    </svg>
+  );
+}
 
 // ─────────────────────────────────────────────────────────────
 // Component
 // ─────────────────────────────────────────────────────────────
 
 /**
- * Button — interactive CTA primitive for actions and navigation.
+ * Button — interactive CTA primitive for user actions.
  *
- * Supports both standard HTML button behavior and Next.js link navigation
- * when `href` is provided.
+ * Extends `React.ButtonHTMLAttributes<HTMLButtonElement>`.
  *
  * **Design Tokens & Specs:**
  * - `primary`: Blue → Purple gradient, 999px radius, 16px × 32px padding (md size),
  *   hover lift 4px, glow shadow, scale 0.98 on click.
- * - `secondary`: Transparent background, 20% white border, glass hover effect.
- * - `icon`: Circular 48px button for social links and navigation controls.
+ * - `secondary`: Dark surface background with border and hover lift.
+ * - `outline`: Transparent background, 20% white border, glass hover effect.
+ * - `ghost`: Subtle hover background without border.
+ * - `icon`: Circular 48px button.
  *
  * @example Primary CTA Button
  * ```tsx
@@ -166,65 +161,53 @@ const SIZE_CLASSES: Record<ButtonVariant, Record<ButtonSize, string>> = {
  * </Button>
  * ```
  *
- * @example Link Button with external target
+ * @example Loading State
  * ```tsx
- * <Button href="https://github.com" external variant="secondary">
- *   View GitHub
+ * <Button loading variant="primary">
+ *   Submitting...
  * </Button>
  * ```
  *
- * @example Circular Icon Button
+ * @example Outline Variant
  * ```tsx
- * <Button variant="icon" aria-label="Social Link">
- *   <GithubIcon />
+ * <Button variant="outline" size="sm">
+ *   Learn More
  * </Button>
  * ```
  */
 function Button({
+  type = "button",
   variant = "primary",
   size = "md",
-  href,
-  external = false,
+  loading = false,
   disabled = false,
   className,
   children,
   ...rest
 }: ButtonProps) {
-  const combinedClasses = cn(
-    BASE_CLASSES,
-    VARIANT_CLASSES[variant],
-    SIZE_CLASSES[variant][size],
-    className
-  );
-
-  if (href && !disabled) {
-    const isExternal = external || href.startsWith("http") || href.startsWith("//");
-    return (
-      <Link
-        href={href}
-        className={combinedClasses}
-        {...(isExternal
-          ? { target: "_blank", rel: "noopener noreferrer" }
-          : {})}
-        {...(rest as Omit<ComponentPropsWithoutRef<typeof Link>, "href">)}
-      >
-        {children}
-      </Link>
-    );
-  }
+  const isEffectiveDisabled = disabled || loading;
 
   return (
     <button
-      type="button"
-      disabled={disabled}
-      aria-disabled={disabled}
-      className={combinedClasses}
-      {...(rest as ComponentPropsWithoutRef<"button">)}
+      type={type}
+      disabled={isEffectiveDisabled}
+      aria-busy={loading}
+      aria-disabled={isEffectiveDisabled}
+      className={cn(
+        BASE_CLASSES,
+        VARIANT_CLASSES[variant],
+        SIZE_CLASSES[size],
+        className
+      )}
+      {...rest}
     >
+      {loading && <LoadingSpinner />}
       {children}
     </button>
   );
 }
 
-// Named export only — no default export (per project convention)
+Button.displayName = "Button";
+
+// Named export only — no default export
 export { Button };
