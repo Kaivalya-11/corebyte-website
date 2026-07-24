@@ -35,7 +35,7 @@ const SERVICE_ICON_MAP: Record<string, LucideIcon> = {
  */
 export function Services() {
   return (
-    <section id="services" className="relative py-20 lg:py-28 bg-bg text-text">
+    <section id="services" className="relative py-24 lg:py-32 bg-bg text-text">
       {/* Background Section Separation Glow */}
       <div
         aria-hidden="true"
@@ -53,7 +53,7 @@ export function Services() {
         {/* 4-Column Responsive Grid */}
         <StaggerChildren
           staggerDelay={0.1}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
         >
           {SERVICES.map((service) => {
             const IconComponent = SERVICE_ICON_MAP[service.icon];

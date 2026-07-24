@@ -38,6 +38,9 @@ export interface BrandMarkProps {
    */
   decorative?: boolean;
 
+  /** Prioritize image loading (useful when mark is above-the-fold in hero/navbar). */
+  priority?: boolean;
+
   /** Additional Tailwind CSS classes merged via `cn()`. */
   className?: string;
 
@@ -56,7 +59,7 @@ const SIZE_MAP: Record<"sm" | "md" | "lg", number> = {
 };
 
 const THEME_MAP: Record<BrandMarkTheme, string> = {
-  color: "/images/brand/Brand-mark.png",
+  color: "/images/brand/Brand-mark-nobg.png",
   white: "/images/brand/Brand-mark-white.png",
   black: "/images/brand/Brand-mark-black.png",
   reverse: "/images/brand/Brand-mark-reverse.png",
@@ -85,6 +88,7 @@ function BrandMark({
   size = "md",
   theme = "color",
   decorative = true,
+  priority = false,
   className,
   alt = "CoreByte Studios Brand Mark",
 }: BrandMarkProps) {
@@ -101,6 +105,7 @@ function BrandMark({
         alt={decorative ? "" : alt}
         width={pixelSize}
         height={pixelSize}
+        priority={priority}
         style={{ width: pixelSize, height: pixelSize }}
         className="object-contain"
       />

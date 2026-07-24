@@ -50,16 +50,16 @@ export interface LogoProps {
 
 const ASSET_MAP: Record<LogoVariant, Record<LogoTheme, { src: string; width: number; height: number }>> = {
   full: {
-    dark: { src: "/images/brand/Full-logo-white.png", width: 220, height: 48 },
-    light: { src: "/images/brand/Full-logo.png", width: 220, height: 48 },
+    dark: { src: "/images/brand/Full-logo-white-nobg.png", width: 220, height: 48 },
+    light: { src: "/images/brand/Full-logo-nobg.png", width: 220, height: 48 },
   },
   stacked: {
     dark: { src: "/images/brand/Full-stacked-logo.png", width: 160, height: 120 },
     light: { src: "/images/brand/Full-stacked-logo.png", width: 160, height: 120 },
   },
   mark: {
-    dark: { src: "/images/brand/Brand-mark-white.png", width: 48, height: 48 },
-    light: { src: "/images/brand/Brand-mark-black.png", width: 48, height: 48 },
+    dark: { src: "/images/brand/Brand-mark-nobg.png", width: 48, height: 48 },
+    light: { src: "/images/brand/Brand-mark-nobg.png", width: 48, height: 48 },
   },
 };
 

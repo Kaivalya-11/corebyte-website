@@ -62,7 +62,7 @@ function SectionHeader({
   const isCenter = align === "center";
 
   return (
-    <FadeUp className={cn("flex flex-col gap-4 mb-12 md:mb-16", isCenter ? "items-center text-center mx-auto max-w-2xl" : "items-start text-left max-w-xl", className)}>
+    <FadeUp className={cn("flex flex-col gap-4 mb-16 lg:mb-20", isCenter ? "items-center text-center mx-auto max-w-2xl" : "items-start text-left max-w-xl", className)}>
       {eyebrow && (
         <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
           {eyebrow}

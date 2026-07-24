@@ -40,7 +40,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 // ─────────────────────────────────────────────────────────────
-// Widget position / style configuration
+// Widget position & breathing room configuration
 // ─────────────────────────────────────────────────────────────
 
 type WidgetPosition = {
@@ -52,25 +52,25 @@ type WidgetPosition = {
 
 const WIDGET_POSITIONS: Record<string, WidgetPosition> = {
   ai: {
-    position: "absolute -top-5 -left-3 sm:-left-8",
+    position: "absolute -top-7 -left-5 sm:-left-12",
     borderColor: "border-primary/30 shadow-glow/30",
     direction: "left",
     delay: 0.7,
   },
   performance: {
-    position: "absolute -top-6 -right-3 sm:-right-8",
+    position: "absolute -top-8 -right-5 sm:-right-12",
     borderColor: "border-success/30 shadow-glow/30",
     direction: "right",
     delay: 0.8,
   },
   security: {
-    position: "absolute -bottom-6 -left-3 sm:-left-8",
+    position: "absolute -bottom-8 -left-5 sm:-left-12",
     borderColor: "border-white/20",
     direction: "left",
     delay: 0.9,
   },
   deploy: {
-    position: "absolute -bottom-5 -right-3 sm:-right-8",
+    position: "absolute -bottom-7 -right-5 sm:-right-12",
     borderColor: "border-secondary/30",
     direction: "right",
     delay: 1.0,
@@ -89,36 +89,28 @@ const WIDGET_ICON_BG: Record<HeroWidget["color"], string> = {
 };
 
 /**
- * CoreByte Studios Hero — Animated Section
+ * CoreByte Studios Hero — Production Polished Section
  *
- * Designed per the official Hero 1.0 Art Direction specification.
- * Reflects BrandBible.md values: Quality First, Precision Engineering,
- * Client Trust, and Artificial Intelligence Innovation.
- *
- * Background Architecture:
- * 1. Base #050816
- * 2. 32px GridBackground (3% opacity)
- * 3. Radial BackgroundGlow (blue-purple gradient blur) with pulse
- * 4. NoiseTexture SVG film grain (2.5% opacity)
- * 5. Radial Vignette Overlay
- *
- * Animation Choreography (~1.8s total):
- * - Left column: Staggered FadeUp (badge → headline → desc → buttons → trust)
- * - Right column: FloatIn browser mockup from right
- * - Floating widgets: FloatIn from alternating sides with continuous float
+ * Full Optical & Spacing Alignment Review:
+ * - Increased desktop left/right container padding (px-5 sm:px-8 lg:px-12 xl:px-16).
+ * - Optimized line length for copy (~58-62 characters).
+ * - Trust row with optical icon centering and equal gap spacing.
+ * - Softer browser elevation shadow (shadow-[0_24px_70px_rgba(0,0,0,0.75)]).
+ * - Widget offsets extended to avoid border overlap.
+ * - Seamless gradient transition into Services.
  */
 export function Hero() {
   const { badge, headline, description, cta, trustIndicators, workspace, widgets } =
     HERO_CONTENT;
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] flex items-center py-20 lg:py-32 bg-bg text-text overflow-hidden">
-      {/* ── 1. Reusable Brand Background Layer Stack ───────────── */}
-      <BackgroundGlow position="top-center" intensity="medium" className="glow-pulse" />
+    <section className="relative min-h-screen flex items-center pt-28 pb-24 lg:pt-32 lg:pb-28 bg-bg text-text overflow-hidden">
+      {/* ── 1. Background System (Low-Opacity Depth) ───────────── */}
+      <BackgroundGlow position="top-center" intensity="medium" className="glow-pulse opacity-75" />
       <GridBackground mask="fade-bottom" />
-      <NoiseTexture opacity={0.025} />
+      <NoiseTexture opacity={0.02} />
 
-      {/* Soft Radial Vignette Overlay for Focal Grounding */}
+      {/* Soft Radial Vignette Overlay */}
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(5,8,22,0.6)_70%,rgba(5,8,22,0.95)_100%)] pointer-events-none -z-10"
@@ -126,12 +118,12 @@ export function Hero() {
 
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          {/* ── 2. Left Column (6 Grid Columns / 50% Desktop Width) ── */}
-          <div className="lg:col-span-6 flex flex-col items-start gap-6 sm:gap-8 text-left z-10">
+          {/* ── 2. Left Column (Typographic Hierarchy & Alignment) ── */}
+          <div className="lg:col-span-6 flex flex-col items-start gap-6 sm:gap-7 text-left z-10">
             {/* Brand Motto Status Badge */}
             <FadeUp delay={0}>
               <Badge variant="primary" size="md" className="gap-2.5 py-1.5 px-4">
-                <BrandMark size="sm" theme="color" decorative />
+                <BrandMark size="sm" theme="color" priority decorative />
                 <span>{badge}</span>
               </Badge>
             </FadeUp>
@@ -144,9 +136,9 @@ export function Hero() {
               </Heading>
             </FadeUp>
 
-            {/* Inter Body Large Description */}
+            {/* Inter Body Copy (Tuned to ~58-62 characters per line) */}
             <FadeUp delay={0.2}>
-              <p className="text-text-muted text-lg sm:text-xl leading-relaxed max-w-lg font-body">
+              <p className="text-text-muted/90 text-base sm:text-lg leading-relaxed max-w-[540px] font-body">
                 {description}
               </p>
             </FadeUp>
@@ -156,7 +148,7 @@ export function Hero() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-1">
                 <Button variant="primary" size="lg" className="group">
                   <span>{cta.primary}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 shrink-0" />
                 </Button>
                 <Button variant="secondary" size="lg">
                   {cta.secondary}
@@ -164,21 +156,21 @@ export function Hero() {
               </div>
             </FadeUp>
 
-            {/* Polished Trust Guarantee Row */}
+            {/* Trust Guarantee Row (Equal Spacing & Optical Centering) */}
             <FadeUp delay={0.4}>
               <div className="pt-6 sm:pt-8 border-t border-white/10 w-full">
                 <StaggerChildren
                   staggerDelay={0.08}
                   delay={0.1}
-                  className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-sm text-text-muted font-body"
+                  className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-7 gap-y-3.5 text-xs sm:text-sm text-text-muted font-body"
                 >
                   {trustIndicators.map((indicator) => (
                     <StaggerItem key={indicator}>
-                      <div className="flex items-center gap-2">
-                        <div className="p-1 rounded-full bg-primary/15 text-primary">
+                      <div className="flex items-center gap-2.5 shrink-0">
+                        <div className="p-1 rounded-full bg-primary/15 text-primary border border-primary/20 shrink-0 flex items-center justify-center">
                           <Check className="w-3.5 h-3.5" />
                         </div>
-                        <span>{indicator}</span>
+                        <span className="leading-none text-text-muted">{indicator}</span>
                       </div>
                     </StaggerItem>
                   ))}
@@ -187,17 +179,17 @@ export function Hero() {
             </FadeUp>
           </div>
 
-          {/* ── 3. Right Column (6 Grid Columns / 50% Desktop Width) ─ */}
-          <div className="lg:col-span-6 relative w-full max-w-xl lg:max-w-none mx-auto z-10 pt-4 lg:pt-0">
+          {/* ── 3. Right Column (Browser Showcase - Elevation & Breathing Room) ─ */}
+          <div className="lg:col-span-6 relative w-full max-w-xl lg:max-w-none mx-auto z-10 pt-8 lg:pt-12">
             {/* Ambient Card Backlight Halo */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-tr from-primary/25 via-secondary/25 to-transparent blur-3xl rounded-3xl -z-10"
+              className="absolute inset-0 bg-gradient-to-tr from-primary/25 via-secondary/20 to-transparent blur-3xl rounded-3xl -z-10"
             />
 
             {/* Primary Browser / Workspace Mockup */}
             <FloatIn direction="right" delay={0.2} duration={0.6}>
-              <GlassCard className="p-0 overflow-hidden border-white/15 shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
+              <GlassCard className="p-0 overflow-hidden border-white/12 shadow-[0_24px_70px_rgba(0,0,0,0.75),0_0_40px_rgba(37,99,235,0.1)]">
                 {/* Browser Header Bar */}
                 <div className="flex items-center justify-between px-4 py-3 bg-surface/90 border-b border-white/10 select-none">
                   <div className="flex items-center gap-2">
@@ -275,7 +267,7 @@ export function Hero() {
               </GlassCard>
             </FloatIn>
 
-            {/* ── 4. Asymmetrical Floating Mini Widgets ───────────────── */}
+            {/* ── 4. Floating Mini Widgets (Breathing Room) ─────────── */}
             {widgets.map((widget) => {
               const pos = WIDGET_POSITIONS[widget.id];
               if (!pos) return null;
@@ -312,6 +304,12 @@ export function Hero() {
           </div>
         </div>
       </Container>
+
+      {/* ── 5. Subtle Section Transition into Services ─────────────── */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-bg pointer-events-none z-10"
+      />
     </section>
   );
 }

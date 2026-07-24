@@ -19,7 +19,7 @@ export function Technologies() {
   const marqueeItems = [...TECHNOLOGIES, ...TECHNOLOGIES];
 
   return (
-    <section id="technologies" className="relative py-20 lg:py-24 bg-bg text-text overflow-hidden">
+    <section id="technologies" className="relative py-24 lg:py-32 bg-bg text-text overflow-hidden">
       <Container>
         {/* Section Header */}
         <SectionHeader
@@ -29,13 +29,13 @@ export function Technologies() {
         />
       </Container>
 
-      {/* Marquee Outer Wrapper with Gradient Mask Fades */}
-      <div className="relative w-full overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+      {/* Grounded Marquee Frame with Border Boundaries */}
+      <div className="relative w-full border-y border-white/5 bg-surface/30 py-8 lg:py-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
         <div className="animate-marquee flex items-center gap-4 sm:gap-6">
           {marqueeItems.map((tech, index) => (
             <GlassCard
               key={`${tech.id}-${index}`}
-              className="flex items-center gap-3.5 px-5 py-3 shrink-0 glow-border bg-surface/80 opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-300 select-none cursor-pointer"
+              className="flex items-center gap-3.5 px-5 py-3 shrink-0 glow-border bg-surface/80 opacity-85 hover:opacity-100 hover:scale-105 transition-all duration-300 select-none cursor-pointer"
             >
               <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
                 <Image

@@ -55,7 +55,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const BASE_CLASSES =
   "inline-flex items-center justify-center font-body font-medium select-none cursor-pointer " +
-  "rounded-full transition-all duration-300 ease-out " +
+  "rounded-full transition-all duration-300 ease-out whitespace-nowrap leading-none " +
   "focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 " +
   "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed " +
   "aria-disabled:opacity-50 aria-disabled:pointer-events-none";
@@ -101,10 +101,10 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
 };
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-xs md:text-sm min-h-[36px] gap-2",
-  md: "px-8 py-4 text-sm md:text-base min-h-[48px] gap-2.5", // 16px x 32px padding per spec
-  lg: "px-10 py-5 text-base md:text-lg min-h-[56px] gap-3",
-  icon: "w-12 h-12 p-3 text-base aspect-square shrink-0", // 48px circular per spec
+  sm: "px-5 py-2.5 text-xs md:text-sm min-h-[38px] gap-2 shrink-0",
+  md: "px-7 py-3.5 text-sm md:text-base min-h-[48px] gap-2.5 shrink-0",
+  lg: "px-8 md:px-10 py-4 text-base md:text-lg min-h-[56px] gap-3 shrink-0",
+  icon: "w-12 h-12 p-3 text-base aspect-square shrink-0",
 };
 
 // ─────────────────────────────────────────────────────────────
