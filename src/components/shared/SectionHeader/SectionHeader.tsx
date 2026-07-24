@@ -41,14 +41,11 @@ export interface SectionHeaderProps {
  * Enforces visual consistency across section titles with built-in
  * scroll animation (`FadeUp`), brand typography rules, and responsive alignment.
  *
- * @example Centered section header (Services, Process, FAQ)
- * ```tsx
- * <SectionHeader
- *   eyebrow="OUR SERVICES"
- *   title="What We Build"
- *   description="Modern digital solutions crafted for businesses of every size."
- * />
- * ```
+ * Spacing / Hierarchy (matching diagram):
+ * 1. Badge (CAPABILITIES) - Centered
+ * 2. Heading (What We Build) - Centered & text-balanced
+ * 3. Subtitle (Modern digital solutions...) - Centered & text-balanced (no widows)
+ * 4. 48-64px bottom margin to cards grid
  */
 function SectionHeader({
   eyebrow,
@@ -62,16 +59,38 @@ function SectionHeader({
   const isCenter = align === "center";
 
   return (
-    <FadeUp className={cn("flex flex-col gap-4 mb-16 lg:mb-20", isCenter ? "items-center text-center mx-auto max-w-2xl" : "items-start text-left max-w-xl", className)}>
+    <FadeUp
+      className={cn(
+        "flex flex-col mb-12 lg:mb-16 w-full",
+        isCenter ? "items-center text-center mx-auto max-w-2xl" : "items-start text-left max-w-xl",
+        className
+      )}
+    >
+      {/* 1. Badge (Centered) */}
       {eyebrow && (
-        <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
-          {eyebrow}
-        </Badge>
+        <div className="mb-3 flex justify-center w-full">
+          <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
+            {eyebrow}
+          </Badge>
+        </div>
       )}
 
-      <div className={cn("flex flex-col sm:flex-row sm:items-end justify-between w-full gap-4", !isCenter && action && "sm:flex-row sm:items-end")}>
-        <div>
-          <Heading level="h2" variant="section" align={align}>
+      {/* 2 & 3. Heading + Subtitle Block */}
+      <div
+        className={cn(
+          "w-full flex flex-col",
+          isCenter ? "items-center text-center justify-center" : "items-start text-left",
+          !isCenter && action && "sm:flex-row sm:items-end justify-between"
+        )}
+      >
+        <div className={cn("w-full flex flex-col", isCenter && "items-center text-center justify-center")}>
+          {/* Heading (What We Build) */}
+          <Heading
+            level="h2"
+            variant="section"
+            align={align}
+            className={cn("w-full text-balance", isCenter && "text-center mx-auto")}
+          >
             {title}
             {titleGradient && (
               <>
@@ -81,14 +100,20 @@ function SectionHeader({
             )}
           </Heading>
 
+          {/* Subtitle (Modern digital solutions...) - max-w-xl + text-balance avoids word widows */}
           {description && (
-            <p className="mt-3 text-text-muted text-base sm:text-lg leading-relaxed font-body">
+            <p
+              className={cn(
+                "mt-3 text-text-muted/90 text-base sm:text-lg leading-relaxed font-body max-w-xl text-balance",
+                isCenter ? "text-center mx-auto" : "text-left"
+              )}
+            >
               {description}
             </p>
           )}
         </div>
 
-        {!isCenter && action && <div className="shrink-0">{action}</div>}
+        {!isCenter && action && <div className="shrink-0 mt-4 sm:mt-0">{action}</div>}
       </div>
     </FadeUp>
   );

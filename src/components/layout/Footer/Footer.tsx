@@ -10,9 +10,6 @@ import { cn } from "@/lib/cn";
 
 // ─────────────────────────────────────────────────────────────
 // Icon resolver for social links
-//
-// Lucide v1.26+ removed brand icons (Github, Linkedin, Instagram).
-// Using semantic alternatives that communicate platform intent.
 // ─────────────────────────────────────────────────────────────
 
 const SOCIAL_ICON_MAP: Record<string, LucideIcon> = {
@@ -37,7 +34,7 @@ function FooterColumn({
 }) {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <h3 className="font-heading font-semibold text-sm text-text tracking-wide uppercase">
+      <h3 className="font-heading font-semibold text-xs text-text/90 tracking-wider uppercase">
         {title}
       </h3>
       {children}
@@ -50,13 +47,16 @@ function FooterColumn({
 // ─────────────────────────────────────────────────────────────
 
 /**
- * Footer — site-wide footer component.
+ * Footer — site-wide footer component (Creative Director Refinement).
  *
- * Spec (Footer.md):
- * - 4-column grid: Brand, Navigation, Services, Contact
- * - Bottom bar: copyright + social icons
- * - Background: bg-surface with top border
- * - Social icons hover: primary blue
+ * Story Question: "How can you reach us?"
+ * Narrative Role: Act V — Structural Bedrock
+ *
+ * Refined layout properties:
+ * - Logo sizing: crisp 160px width proportion
+ * - Grid column gap: gap-10 sm:gap-12 lg:gap-16 py-16 lg:py-24
+ * - Typography hierarchy: text-xs uppercase headers, text-sm links
+ * - Bottom bar: py-6 sm:py-8 with subtle border-t
  */
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -65,11 +65,11 @@ function Footer() {
     <footer className="bg-surface border-t border-border">
       {/* ── Main Footer Grid ──────────────────────── */}
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 py-16 lg:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 py-16 lg:py-24">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1 flex flex-col gap-5">
             <Link href="/" aria-label="CoreByte Studios — Home">
-              <Logo variant="full" theme="dark" />
+              <Logo variant="full" theme="dark" width={160} />
             </Link>
             <p className="text-text-muted text-sm leading-relaxed font-body max-w-xs">
               A premium software studio crafting modern websites, custom
@@ -79,7 +79,7 @@ function Footer() {
 
           {/* Navigation Column */}
           <FooterColumn title="Navigation">
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -95,7 +95,7 @@ function Footer() {
 
           {/* Services Column */}
           <FooterColumn title="Services">
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-3">
               {SERVICES.map((service) => (
                 <li key={service.id}>
                   <Link
@@ -111,7 +111,7 @@ function Footer() {
 
           {/* Contact Column */}
           <FooterColumn title="Contact">
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-3">
               <li>
                 <a
                   href="mailto:hello@corebytestudios.com"
@@ -131,16 +131,16 @@ function Footer() {
       </Container>
 
       {/* ── Bottom Bar ────────────────────────────── */}
-      <div className="border-t border-border">
+      <div className="border-t border-border/80">
         <Container>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 sm:py-8">
             {/* Copyright */}
             <p className="text-xs text-text-subtle font-body">
               © {currentYear} CoreByte Studios. All rights reserved.
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               {SOCIALS.map((social) => {
                 const IconComponent = SOCIAL_ICON_MAP[social.icon];
                 if (!IconComponent) return null;

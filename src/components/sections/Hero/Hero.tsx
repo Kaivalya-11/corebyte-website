@@ -104,7 +104,7 @@ export function Hero() {
     HERO_CONTENT;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-28 pb-24 lg:pt-32 lg:pb-28 bg-bg text-text overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-32 pb-28 lg:pt-36 lg:pb-36 bg-bg text-text overflow-hidden">
       {/* ── 1. Background System (Low-Opacity Depth) ───────────── */}
       <BackgroundGlow position="top-center" intensity="medium" className="glow-pulse opacity-75" />
       <GridBackground mask="fade-bottom" />
@@ -305,11 +305,6 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* ── 5. Subtle Section Transition into Services ─────────────── */}
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-bg pointer-events-none z-10"
-      />
     </section>
   );
 }
