@@ -4,6 +4,7 @@
 // ─────────────────────────────────────────────
 
 export { NAV_LINKS, NAV_CTA } from "./navigation";
+export { HERO_CONTENT } from "./hero";
 export { SERVICES } from "./services";
 export { PORTFOLIO_PROJECTS } from "./portfolio";
 export { FAQ_ITEMS } from "./faq";

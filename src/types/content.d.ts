@@ -85,3 +85,49 @@ export interface Social {
   /** Lucide icon name — resolved at component level */
   icon: string;
 }
+
+// Hero
+
+export interface HeroWidget {
+  id: string;
+  /** Lucide icon name — resolved at component level */
+  icon: string;
+  label: string;
+  detail: string;
+  /** Color token name for icon/border theming (e.g. "primary", "success") */
+  color: "primary" | "success" | "secondary" | "text";
+}
+
+export interface HeroWorkspace {
+  /** URL shown in the browser chrome address bar */
+  url: string;
+  /** Active file tab label */
+  activeTab: string;
+  /** Inactive tab labels */
+  inactiveTabs: string[];
+  /** Status badge text in tab bar (e.g. "BUILD PASSING") */
+  statusBadge: string;
+  /** Code comment line at the top of the code block */
+  codeComment: string;
+  /** Key-value pairs rendered inside the code block object */
+  codeEntries: { key: string; value: string; color: "success" | "primary" }[];
+  /** Footer items shown below the code block */
+  footerLeft: string;
+  footerRight: string;
+}
+
+export interface HeroContent {
+  badge: string;
+  headline: {
+    line1: string;
+    line2: string;
+  };
+  description: string;
+  cta: {
+    primary: string;
+    secondary: string;
+  };
+  trustIndicators: string[];
+  workspace: HeroWorkspace;
+  widgets: HeroWidget[];
+}

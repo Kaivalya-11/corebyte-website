@@ -310,6 +310,34 @@ img, video {
   box-shadow: var(--shadow-glow);
 }
 
+/* ── Glow Pulse ──────────────────────────────── */
+/* Slow ambient opacity pulse for hero background glow */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.glow-pulse {
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+
+/* ── Marquee Animation ───────────────────────── */
+/* Continuous horizontal scroll for tech stack marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* ── Reduced Motion ───────────────────────────── */
 /* Disable all animations for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
