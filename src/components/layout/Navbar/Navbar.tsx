@@ -36,7 +36,7 @@ function Navbar() {
           className={cn(
             "pointer-events-auto w-[94%] sm:w-[90%] lg:w-[88%] 2xl:w-[86%] rounded-full",
             "px-6 sm:px-9 lg:px-10 py-3.5 flex items-center justify-between min-h-[70px]",
-            "border transition-all duration-300 ease-out",
+            "border transition-all duration-500 ease-out",
             scrolled
               ? "bg-surface/85 backdrop-blur-xl border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.65)]"
               : "bg-surface/60 backdrop-blur-md border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
@@ -81,7 +81,7 @@ function Navbar() {
           {/* ── Right Actions (Inward-set CTA + Mobile Toggle) ── */}
           <div className="flex items-center gap-4 shrink-0">
             <Link href="#contact" className="hidden sm:inline-flex">
-              <Button variant="primary" size="sm" className="px-5 py-2 text-xs lg:text-sm font-semibold shadow-glow/20">
+              <Button variant="primary" size="sm" className="px-5 py-2 text-xs lg:text-sm font-semibold shadow-glow/20 hover:-translate-y-0.5 hover:shadow-glow/40 transition-all duration-300">
                 {NAV_CTA.label}
               </Button>
             </Link>

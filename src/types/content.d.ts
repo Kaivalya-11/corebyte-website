@@ -33,14 +33,14 @@ export type ProjectStatus = "live" | "in-development" | "completed" | "cta";
 export interface PortfolioProject {
   id: string;
   title: string;
+  category: string;
   description: string;
-  tags: string[];
-  status: ProjectStatus;
-  image: string | null;
-  liveUrl: string | null;
-  githubUrl: string | null;
-  /** When true, card renders as the "Your project could be next" CTA */
-  isCta?: boolean;
+  technologies: string[];
+  image: string;
+  colSpan: "full" | "half" | "featured"; // semantic grid mapping
+  status: string;
+  liveUrl: string;
+  buttonLabel: string;
 }
 
 // FAQ

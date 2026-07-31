@@ -1,4 +1,5 @@
-import type { ElementType, ComponentPropsWithoutRef } from "react";
+import { forwardRef } from "react";
+import type { ElementType, ComponentPropsWithoutRef, ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 // ─────────────────────────────────────────────────────────────
@@ -89,35 +90,47 @@ export type ContainerProps<E extends ElementType = "div"> = ContainerOwnProps<E>
  * </Container>
  * ```
  */
-function Container<E extends ElementType = "div">({
-  as,
-  className,
-  children,
-  ...rest
-}: ContainerProps<E>) {
-  // Resolve the element — default to "div" if not provided
-  const Tag = (as ?? "div") as ElementType;
+type ContainerComponent = {
+  <E extends ElementType = "div">(
+    props: ContainerProps<E> & { ref?: ComponentPropsWithRef<E>["ref"] }
+  ): ReactNode;
+  displayName?: string;
+};
 
-  return (
-    <Tag
-      className={cn(
-        // ── Width constraint (Design Tokens: Container Max Width 1440px)
-        "w-full max-w-[var(--container-max)]",
-        // ── Horizontal centering
-        "mx-auto",
-        // ── Responsive horizontal gutters
-        // 16px on mobile → 24px on sm → 40px on lg → 64px on xl
-        // Keeps content off the edges on all viewport widths.
-        // Section-level components add vertical padding independently.
-        "px-4 sm:px-6 lg:px-10 xl:px-16",
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </Tag>
-  );
-}
+const Container = forwardRef(
+  (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    { as, className, children, ...rest }: ContainerProps<any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: any
+  ) => {
+    // Resolve the element — default to "div" if not provided
+    const Tag = (as ?? "div") as ElementType;
+
+    return (
+      <Tag
+        ref={ref}
+        className={cn(
+          // ── Width constraint (Design Tokens: Container Max Width 1440px)
+          "w-full max-w-[var(--container-max)]",
+          // ── Horizontal centering
+          "mx-auto",
+          // ── Responsive horizontal gutters
+          // 16px on mobile → 24px on sm → 40px on lg → 64px on xl
+          // Keeps content off the edges on all viewport widths.
+          // Section-level components add vertical padding independently.
+          "px-4 sm:px-6 lg:px-10 xl:px-16",
+          className
+        )}
+        {...rest}
+      >
+        {children}
+      </Tag>
+    );
+  }
+) as ContainerComponent;
+
+Container.displayName = "Container";
 
 // Named export — index.ts re-exports this as the public API
 export { Container };

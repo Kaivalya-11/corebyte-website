@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/Glasscard";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeader } from "@/components/shared";
 import { TECHNOLOGIES } from "@/content/technologies";
 
@@ -42,7 +42,8 @@ export function Technologies() {
           {marqueeItems.map((tech, index) => (
             <GlassCard
               key={`row1-${tech.id}-${index}`}
-              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 glow-border bg-surface/90 opacity-90 hover:opacity-100 hover:scale-105 hover:border-primary/50 transition-all duration-300 select-none cursor-pointer shadow-md"
+              hover
+              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 bg-surface/90 opacity-90 hover:opacity-100 hover:-translate-y-1 hover:shadow-glow hover:border-primary/50 transition-all duration-300 select-none cursor-pointer"
             >
               <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
                 <Image
@@ -51,6 +52,7 @@ export function Technologies() {
                   width={28}
                   height={28}
                   className="w-full h-auto object-contain"
+                  style={{ width: "100%", height: "auto" }}
                 />
               </div>
               <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">
@@ -65,7 +67,8 @@ export function Technologies() {
           {marqueeItems.map((tech, index) => (
             <GlassCard
               key={`row2-${tech.id}-${index}`}
-              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 glow-border bg-surface/90 opacity-90 hover:opacity-100 hover:scale-105 hover:border-primary/50 transition-all duration-300 select-none cursor-pointer shadow-md"
+              hover
+              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 bg-surface/90 opacity-90 hover:opacity-100 hover:-translate-y-1 hover:shadow-glow hover:border-primary/50 transition-all duration-300 select-none cursor-pointer"
             >
               <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
                 <Image
@@ -74,6 +77,7 @@ export function Technologies() {
                   width={28}
                   height={28}
                   className="w-full h-auto object-contain"
+                  style={{ width: "100%", height: "auto" }}
                 />
               </div>
               <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">

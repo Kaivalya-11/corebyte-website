@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -68,8 +69,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
    * Click: Scale 0.98
    */
   primary:
-    "bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white " +
-    "shadow-md hover:-translate-y-1 hover:shadow-glow hover:brightness-110 " +
+    "bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-[length:200%_auto] text-white " +
+    "shadow-md hover:-translate-y-1 hover:bg-[position:right_center] hover:shadow-glow hover:scale-[1.02] " +
     "active:scale-[0.98]",
 
   /**
@@ -175,37 +176,43 @@ function LoadingSpinner() {
  * </Button>
  * ```
  */
-function Button({
-  type = "button",
-  variant = "primary",
-  size = "md",
-  loading = false,
-  disabled = false,
-  className,
-  children,
-  ...rest
-}: ButtonProps) {
-  const isEffectiveDisabled = disabled || loading;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      type = "button",
+      variant = "primary",
+      size = "md",
+      loading = false,
+      disabled = false,
+      className,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
+    const isEffectiveDisabled = disabled || loading;
 
-  return (
-    <button
-      type={type}
-      disabled={isEffectiveDisabled}
-      aria-busy={loading}
-      aria-disabled={isEffectiveDisabled}
-      className={cn(
-        BASE_CLASSES,
-        VARIANT_CLASSES[variant],
-        SIZE_CLASSES[size],
-        className
-      )}
-      {...rest}
-    >
-      {loading && <LoadingSpinner />}
-      {children}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type={type}
+        disabled={isEffectiveDisabled}
+        aria-busy={loading}
+        aria-disabled={isEffectiveDisabled}
+        className={cn(
+          BASE_CLASSES,
+          VARIANT_CLASSES[variant],
+          SIZE_CLASSES[size],
+          className
+        )}
+        {...rest}
+      >
+        {loading && <LoadingSpinner />}
+        {children}
+      </button>
+    );
+  }
+);
 
 Button.displayName = "Button";
 

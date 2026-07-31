@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/Badge";
 import { Heading } from "@/components/ui/Heading";
-import { FadeUp } from "@/components/animations";
+import { StaggerChildren, StaggerItem } from "@/components/animations";
 import { cn } from "@/lib/cn";
 import type { ReactNode } from "react";
 
@@ -59,7 +59,8 @@ function SectionHeader({
   const isCenter = align === "center";
 
   return (
-    <FadeUp
+    <StaggerChildren
+      staggerDelay={0.1}
       className={cn(
         "flex flex-col mb-12 lg:mb-16 w-full",
         isCenter ? "items-center text-center mx-auto max-w-2xl" : "items-start text-left max-w-xl",
@@ -68,11 +69,11 @@ function SectionHeader({
     >
       {/* 1. Badge (Centered) */}
       {eyebrow && (
-        <div className="mb-3 flex justify-center w-full">
+        <StaggerItem className="mb-3 flex justify-center w-full">
           <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
             {eyebrow}
           </Badge>
-        </div>
+        </StaggerItem>
       )}
 
       {/* 2 & 3. Heading + Subtitle Block */}
@@ -85,37 +86,45 @@ function SectionHeader({
       >
         <div className={cn("w-full flex flex-col", isCenter && "items-center text-center justify-center")}>
           {/* Heading (What We Build) */}
-          <Heading
-            level="h2"
-            variant="section"
-            align={align}
-            className={cn("w-full text-balance", isCenter && "text-center mx-auto")}
-          >
-            {title}
-            {titleGradient && (
-              <>
-                {" "}
-                <span className="gradient-text">{titleGradient}</span>
-              </>
-            )}
-          </Heading>
+          <StaggerItem className="w-full">
+            <Heading
+              level="h2"
+              variant="section"
+              align={align}
+              className={cn("w-full text-balance", isCenter && "text-center mx-auto")}
+            >
+              {title}
+              {titleGradient && (
+                <>
+                  {" "}
+                  <span className="gradient-text">{titleGradient}</span>
+                </>
+              )}
+            </Heading>
+          </StaggerItem>
 
           {/* Subtitle (Modern digital solutions...) - max-w-xl + text-balance avoids word widows */}
           {description && (
-            <p
-              className={cn(
-                "mt-3 text-text-muted/90 text-base sm:text-lg leading-relaxed font-body max-w-xl text-balance",
-                isCenter ? "text-center mx-auto" : "text-left"
-              )}
-            >
-              {description}
-            </p>
+            <StaggerItem>
+              <p
+                className={cn(
+                  "mt-3 text-text-muted/90 text-base sm:text-lg leading-relaxed font-body max-w-xl text-balance",
+                  isCenter ? "text-center mx-auto" : "text-left"
+                )}
+              >
+                {description}
+              </p>
+            </StaggerItem>
           )}
         </div>
 
-        {!isCenter && action && <div className="shrink-0 mt-4 sm:mt-0">{action}</div>}
+        {!isCenter && action && (
+          <StaggerItem className="shrink-0 mt-4 sm:mt-0">
+            {action}
+          </StaggerItem>
+        )}
       </div>
-    </FadeUp>
+    </StaggerChildren>
   );
 }
 

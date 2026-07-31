@@ -21,7 +21,7 @@ import { FadeUp, FloatIn, StaggerChildren, StaggerItem } from "@/components/anim
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/Glasscard";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Heading } from "@/components/ui/Heading";
 import { HERO_CONTENT } from "@/content/hero";
 import type { HeroWidget } from "@/types/content";
@@ -53,25 +53,25 @@ const WIDGET_POSITIONS: Record<string, WidgetPosition> = {
     position: "absolute -top-7 -left-5 sm:-left-12",
     borderColor: "border-primary/30 shadow-glow/30",
     direction: "left",
-    delay: 0.7,
+    delay: 0.6,
   },
   performance: {
     position: "absolute -top-8 -right-5 sm:-right-12",
     borderColor: "border-success/30 shadow-glow/30",
     direction: "right",
-    delay: 0.8,
+    delay: 0.7,
   },
   security: {
     position: "absolute -bottom-8 -left-5 sm:-left-12",
     borderColor: "border-white/20",
     direction: "left",
-    delay: 0.9,
+    delay: 0.8,
   },
   deploy: {
     position: "absolute -bottom-7 -right-5 sm:-right-12",
     borderColor: "border-secondary/30",
     direction: "right",
-    delay: 1.0,
+    delay: 0.9,
   },
 };
 
@@ -184,7 +184,7 @@ export function Hero() {
             />
 
             {/* Primary Browser / Workspace Mockup */}
-            <FloatIn direction="right" delay={0.2} duration={0.6}>
+            <FloatIn direction="right" delay={0.5} duration={0.6}>
               <GlassCard className="p-0 overflow-hidden border-white/12 shadow-[0_24px_70px_rgba(0,0,0,0.75),0_0_40px_rgba(37,99,235,0.1)]">
                 {/* Browser Header Bar */}
                 <div className="flex items-center justify-between px-4 py-3 bg-surface/90 border-b border-white/10 select-none">

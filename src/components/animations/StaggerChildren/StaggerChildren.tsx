@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { DURATION, EASE } from "@/constants/animation";
+import { staggerContainer, staggerItem, staggerItemReduced } from "@/animations";
 import { cn } from "@/lib/cn";
 import type { ReactNode } from "react";
 
@@ -31,39 +31,7 @@ export interface StaggerItemProps {
   className?: string;
 }
 
-// ─────────────────────────────────────────────────────────────
-// Variants
-// ─────────────────────────────────────────────────────────────
 
-const containerVariants = (staggerDelay: number, delay: number) => ({
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: staggerDelay,
-      delayChildren: delay,
-    },
-  },
-});
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: DURATION.slow,
-      ease: EASE.smooth,
-    },
-  },
-};
-
-const itemVariantsReduced = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: DURATION.fast },
-  },
-};
 
 // ─────────────────────────────────────────────────────────────
 // StaggerItem
@@ -88,7 +56,7 @@ function StaggerItem({ children, className }: StaggerItemProps) {
 
   return (
     <motion.div
-      variants={prefersReduced ? itemVariantsReduced : itemVariants}
+      variants={prefersReduced ? staggerItemReduced : staggerItem}
       className={cn(className)}
     >
       {children}
@@ -132,7 +100,7 @@ function StaggerChildren({
       ref={ref}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      variants={containerVariants(staggerDelay, delay)}
+      variants={staggerContainer(staggerDelay, delay)}
       className={cn(className)}
     >
       {children}

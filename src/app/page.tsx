@@ -1,6 +1,7 @@
 import { GridBackground, NoiseTexture } from "@/components/brand";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { Portfolio } from "@/components/sections/Portfolio";
 import { WhyCoreByte } from "@/components/sections/WhyCoreByte";
 import { Technologies } from "@/components/sections/Technologies";
 import { FAQ } from "@/components/sections/FAQ";
@@ -15,6 +16,7 @@ export default function Home() {
       
       <Hero />
       <Services />
+      <Portfolio />
       <WhyCoreByte />
       <Technologies />
       <FAQ />

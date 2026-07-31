@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -110,27 +111,24 @@ const SIZE_CLASSES: Record<BadgeSize, string> = {
  * </Badge>
  * ```
  */
-function Badge({
-  variant = "primary",
-  size = "md",
-  className,
-  children,
-  ...rest
-}: BadgeProps) {
-  return (
-    <span
-      className={cn(
-        BASE_CLASSES,
-        VARIANT_CLASSES[variant],
-        SIZE_CLASSES[size],
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </span>
-  );
-}
+const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ variant = "primary", size = "md", className, children, ...rest }, ref) => {
+    return (
+      <span
+        ref={ref}
+        className={cn(
+          BASE_CLASSES,
+          VARIANT_CLASSES[variant],
+          SIZE_CLASSES[size],
+          className
+        )}
+        {...rest}
+      >
+        {children}
+      </span>
+    );
+  }
+);
 
 Badge.displayName = "Badge";
 

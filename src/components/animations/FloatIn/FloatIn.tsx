@@ -3,7 +3,17 @@
 import { motion, type Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { DURATION, EASE } from "@/constants/animation";
+import {
+  DURATION,
+  fadeDown,
+  fadeDownReduced,
+  fadeLeft,
+  fadeLeftReduced,
+  fadeRight,
+  fadeRightReduced,
+  fadeUp,
+  fadeUpReduced,
+} from "@/animations";
 import { cn } from "@/lib/cn";
 import type { ReactNode } from "react";
 
@@ -41,11 +51,11 @@ export interface FloatInProps {
 // Direction offsets
 // ─────────────────────────────────────────────────────────────
 
-const OFFSET: Record<FloatInDirection, { x: number; y: number }> = {
-  top: { x: 0, y: -30 },
-  bottom: { x: 0, y: 30 },
-  left: { x: -30, y: 0 },
-  right: { x: 30, y: 0 },
+const VARIANTS_MAP: Record<FloatInDirection, { standard: Variants; reduced: Variants }> = {
+  top: { standard: fadeDown, reduced: fadeDownReduced },
+  bottom: { standard: fadeUp, reduced: fadeUpReduced },
+  left: { standard: fadeRight, reduced: fadeRightReduced }, // -30x to 0 (moves right)
+  right: { standard: fadeLeft, reduced: fadeLeftReduced },  // 30x to 0 (moves left)
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -85,20 +95,20 @@ function FloatIn({
 }: FloatInProps) {
   const prefersReduced = useReducedMotion();
   const [ref, inView] = useInView({ triggerOnce: once, threshold });
-  const offset = OFFSET[direction];
+  const directionVariants = VARIANTS_MAP[direction];
+  const baseVariants = prefersReduced ? directionVariants.reduced : directionVariants.standard;
 
+  // We clone the variants to inject the custom delay and duration props
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const baseVisible = baseVariants.visible as any;
   const variants: Variants = {
-    hidden: prefersReduced
-      ? { opacity: 0 }
-      : { opacity: 0, x: offset.x, y: offset.y },
+    hidden: baseVariants.hidden,
     visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
+      ...baseVisible,
       transition: {
-        duration: prefersReduced ? DURATION.fast : duration,
+        ...(baseVisible.transition || {}),
         delay,
-        ease: prefersReduced ? "easeOut" : [...EASE.smooth],
+        ...(duration ? { duration: prefersReduced ? DURATION.fast : duration } : {}),
       },
     },
   };

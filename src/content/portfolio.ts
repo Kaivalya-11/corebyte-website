@@ -1,47 +1,52 @@
-// ─────────────────────────────────────────────
-// CoreByte Studios — Portfolio Content
-// Source: Portfolio.md / Homepage Blueprint.md Section 05
-// ─────────────────────────────────────────────
-// NOTE: image paths will 404 until Sprint 3 supplies screenshots.
-// isCta card is intentional — renders as the "Your project could be next"
-// placeholder card per the wireframe spec.
-// ─────────────────────────────────────────────
-
 import type { PortfolioProject } from "@/types/content";
 
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
+    id: "jarvis-ai",
+    title: "Jarvis AI",
+    category: "AI Desktop Assistant",
+    description: "A next-generation AI desktop assistant focused on intelligent automation, voice interaction, local execution, and productivity workflows.",
+    technologies: ["Electron", "React", "Python", "OpenAI"],
+    image: "/images/portfolio/jarvis-ai.jpg",
+    colSpan: "featured",
+    status: "In Development",
+    liveUrl: "",
+    buttonLabel: "Coming Soon",
+  },
+  {
+    id: "wavex",
+    title: "Wavex Music Streaming Platform",
+    category: "Music Streaming",
+    description: "A modern music streaming platform featuring seamless playback, playlist management, responsive design, and an immersive listening experience built with the MERN stack.",
+    technologies: ["MongoDB", "Express", "React", "Node.js"],
+    image: "/images/portfolio/wavex.jpg",
+    colSpan: "half",
+    status: "Beta",
+    liveUrl: "https://wavex-mocha.vercel.app/",
+    buttonLabel: "Live Demo",
+  },
+  {
     id: "personal-portfolio",
     title: "Personal Portfolio",
-    description:
-      "A sleek, animated developer portfolio built with Next.js and Framer Motion. Designed to make a lasting first impression and showcase projects with clarity.",
-    tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    status: "live",
-    image: "/images/portfolio/personal-portfolio.png",
-    liveUrl: "#",
-    githubUrl: null,
+    category: "Web Portfolio",
+    description: "My personal portfolio showcasing premium UI/UX, frontend engineering, responsive design, and modern web animations.",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    image: "/images/portfolio/personal-portfolio.jpg",
+    colSpan: "half",
+    status: "Live",
+    liveUrl: "https://my-portfolio-eight-topaz-41.vercel.app/",
+    buttonLabel: "Live Demo",
   },
   {
-    id: "siddhi-vinayak-events",
-    title: "SiddhiVinayak Events",
-    description:
-      "A full-featured event management website for a premium events company. Built with rich animations, a gallery system, and an integrated inquiry form.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
-    status: "in-development",
-    image: "/images/portfolio/siddhi-vinayak-events.png",
-    liveUrl: null,
-    githubUrl: null,
-  },
-  {
-    id: "your-project",
-    title: "Your Project Could Be Next",
-    description:
-      "Have an idea? We'd love to hear it. Let's build something amazing together.",
-    tags: [],
-    status: "cta",
-    image: null,
-    liveUrl: null,
-    githubUrl: null,
-    isCta: true,
+    id: "aura-commerce",
+    title: "Aura Commerce",
+    category: "Headless Storefront",
+    description: "An e-commerce website built during my first year of engineering. A complete redesign is planned as part of CoreByte Studios.",
+    technologies: ["Shopify Plus", "Next.js", "Framer Motion"],
+    image: "/images/portfolio/aura.png",
+    colSpan: "half",
+    status: "Legacy Project",
+    liveUrl: "",
+    buttonLabel: "Coming Soon",
   },
 ];

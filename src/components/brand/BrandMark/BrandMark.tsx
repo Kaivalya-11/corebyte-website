@@ -107,6 +107,7 @@ function BrandMark({
         height={pixelSize}
         priority={priority}
         className={cn("w-auto h-auto object-contain", className)}
+        style={{ width: "auto", height: "auto" }}
       />
     </div>
   );

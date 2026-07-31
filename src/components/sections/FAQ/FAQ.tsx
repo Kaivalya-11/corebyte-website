@@ -1,12 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/shared";
+import { DURATION, EASE } from "@/animations";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { FAQ_ITEMS } from "@/content";
 
 export function FAQ() {
+  const [value, setValue] = useState<string>("");
+  const prefersReduced = useReducedMotion();
+
+  const animationProps = prefersReduced
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: DURATION.fast },
+      }
+    : {
+        initial: { height: 0, opacity: 0 },
+        animate: { height: "auto", opacity: 1 },
+        exit: { height: 0, opacity: 0 },
+        transition: { duration: DURATION.normal, ease: EASE.smooth },
+      };
+
   return (
     <section id="faq" className="relative py-16 lg:py-20 overflow-hidden">
       {/* Subtle Background Glow */}
@@ -27,6 +48,8 @@ export function FAQ() {
         <Accordion.Root
           type="single"
           collapsible
+          value={value}
+          onValueChange={setValue}
           className="w-full space-y-4"
         >
           {FAQ_ITEMS.map((item) => (
@@ -45,11 +68,20 @@ export function FAQ() {
                   </div>
                 </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content className="overflow-hidden text-sm sm:text-base text-text-muted font-body leading-relaxed data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <div className="pb-6 px-6 sm:px-8 pt-0">
-                  {item.answer}
-                </div>
-              </Accordion.Content>
+              <AnimatePresence initial={false}>
+                {value === item.id && (
+                  <Accordion.Content forceMount asChild>
+                    <motion.div
+                      {...animationProps}
+                      className="overflow-hidden text-sm sm:text-base text-text-muted font-body leading-relaxed"
+                    >
+                      <div className="pb-6 px-6 sm:px-8 pt-0">
+                        {item.answer}
+                      </div>
+                    </motion.div>
+                  </Accordion.Content>
+                )}
+              </AnimatePresence>
             </Accordion.Item>
           ))}
         </Accordion.Root>

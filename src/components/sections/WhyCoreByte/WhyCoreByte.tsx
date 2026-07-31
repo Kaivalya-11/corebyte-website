@@ -4,8 +4,8 @@ import { Shield, Sparkles, Zap, Code } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Heading";
-import { GlassCard } from "@/components/ui/Glasscard";
-import { StaggerChildren, StaggerItem } from "@/components/animations";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { FloatIn, StaggerChildren, StaggerItem } from "@/components/animations";
 import { WHY_COREBYTE } from "@/content";
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -22,7 +22,7 @@ export function WhyCoreByte() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
           {/* Left Content Area */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          <FloatIn direction="left" className="lg:col-span-5 flex flex-col justify-center">
             <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
               <span>The CoreByte Advantage</span>
@@ -45,7 +45,7 @@ export function WhyCoreByte() {
                 <div className="text-sm text-text-muted">Client Satisfaction</div>
               </div>
             </div>
-          </div>
+          </FloatIn>
 
           {/* Right Cards Area */}
           <div className="lg:col-span-7 lg:pl-10">
@@ -54,7 +54,7 @@ export function WhyCoreByte() {
                 const IconComponent = ICON_MAP[item.icon] || Code;
                 return (
                   <StaggerItem key={item.id} className={index % 2 === 1 ? "sm:mt-12" : ""}>
-                    <GlassCard className="p-8 h-full bg-surface/40 hover:bg-surface/60 transition-colors duration-300 border-white/10 hover:border-primary/30 group">
+                    <GlassCard hover className="p-8 h-full bg-surface/40 hover:bg-surface/60 transition-all duration-300 border-white/10 hover:border-primary/30 hover:-translate-y-1 hover:shadow-glow group">
                       <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-text group-hover:bg-primary/20 group-hover:text-primary group-hover:border-primary/30 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3">
                         <IconComponent className="w-6 h-6" />
                       </div>

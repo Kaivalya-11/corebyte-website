@@ -70,7 +70,7 @@ function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-6 py-12 lg:py-16">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-3 flex flex-col gap-5">
-            <Link href="/" aria-label="CoreByte Studios — Home">
+            <Link href="/" aria-label="CoreByte Studios — Home" className="transition-opacity duration-300 hover:opacity-80">
               <Logo variant="full" theme="dark" width={140} />
             </Link>
             <p className="text-text-muted text-sm leading-relaxed font-body">
@@ -86,7 +86,7 @@ function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-muted font-body transition-colors duration-200 hover:text-primary"
+                    className="relative text-sm text-text-muted font-body transition-all duration-300 hover:text-primary opacity-80 hover:opacity-100 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     {link.label}
                   </Link>
@@ -102,7 +102,7 @@ function Footer() {
                 <li key={service.id}>
                   <Link
                     href={`#${service.id}`}
-                    className="text-sm text-text-muted font-body transition-colors duration-200 hover:text-primary"
+                    className="relative text-sm text-text-muted font-body transition-all duration-300 hover:text-primary opacity-80 hover:opacity-100 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     {service.title}
                   </Link>

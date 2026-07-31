@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { fadeUp, fadeUpReduced, DURATION, EASE } from "@/constants/animation";
+import { fadeUp, fadeUpReduced, DURATION, EASE } from "@/animations";
 import { cn } from "@/lib/cn";
 import type { ReactNode } from "react";
 

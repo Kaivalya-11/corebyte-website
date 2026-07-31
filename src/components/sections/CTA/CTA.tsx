@@ -6,7 +6,7 @@ import { BackgroundGlow } from "@/components/brand";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/Glasscard";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Heading } from "@/components/ui/Heading";
 import { FadeUp } from "@/components/animations";
 
@@ -53,7 +53,7 @@ export function CTA() {
               </div>
 
               {/* Display Heading */}
-              <Heading level="h2" variant="display" align="center" className="text-balance leading-tight">
+              <Heading level="h2" variant="display" align="center" className="leading-[1.15] py-2">
                 Let&apos;s Build Something <br className="hidden sm:inline" />
                 <span className="gradient-text">Extraordinary</span>
               </Heading>

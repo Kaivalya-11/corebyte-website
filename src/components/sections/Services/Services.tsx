@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { GlassCard } from "@/components/ui/Glasscard";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Heading } from "@/components/ui/Heading";
 import { SectionHeader } from "@/components/shared";
 import { StaggerChildren, StaggerItem } from "@/components/animations";
@@ -61,6 +61,7 @@ export function Services() {
         {/* Editorial Layout Offset to Cards Grid (64–80px spacing rhythm) */}
         <div className="mt-16 lg:mt-20">
           <StaggerChildren
+            delay={0.3}
             staggerDelay={0.1}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
           >
@@ -73,7 +74,7 @@ export function Services() {
                 <StaggerItem key={service.id} className={isWide ? "lg:col-span-2 h-full" : "lg:col-span-1 h-full"}>
                   <GlassCard
                     hover
-                    className="group flex flex-col justify-between p-7 sm:p-8 md:p-10 h-full glow-border transition-all duration-300 hover:-translate-y-3 hover:border-primary/50 hover:shadow-[0_24px_50px_rgba(0,0,0,0.7)]"
+                    className="group flex flex-col justify-between p-7 sm:p-8 md:p-10 h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-glow"
                   >
                     <div className="space-y-6">
                       {/* Service Icon Container */}

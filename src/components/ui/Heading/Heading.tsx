@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -200,27 +201,26 @@ const ALIGN_CLASSES: Record<HeadingAlign, string> = {
  * <Heading level="h3" variant="card" align="center">Web Development</Heading>
  * ```
  */
-function Heading({
-  level = "h2",
-  variant = "section",
-  align = "left",
-  className,
-  children,
-}: HeadingProps) {
-  const Tag = level;
+const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ level = "h2", variant = "section", align = "left", className, children }, ref) => {
+    const Tag = level;
 
-  return (
-    <Tag
-      className={cn(
-        VARIANT_CLASSES[variant],
-        ALIGN_CLASSES[align],
-        className
-      )}
-    >
-      {children}
-    </Tag>
-  );
-}
+    return (
+      <Tag
+        ref={ref}
+        className={cn(
+          VARIANT_CLASSES[variant],
+          ALIGN_CLASSES[align],
+          className
+        )}
+      >
+        {children}
+      </Tag>
+    );
+  }
+);
+
+Heading.displayName = "Heading";
 
 // Named export only — no default export (per project convention)
 export { Heading };
