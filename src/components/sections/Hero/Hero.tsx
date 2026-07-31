@@ -16,8 +16,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   BackgroundGlow,
   BrandMark,
-  GridBackground,
-  NoiseTexture,
 } from "@/components/brand";
 import { FadeUp, FloatIn, StaggerChildren, StaggerItem } from "@/components/animations";
 import { Badge } from "@/components/ui/Badge";
@@ -104,11 +102,9 @@ export function Hero() {
     HERO_CONTENT;
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-28 lg:pt-36 lg:pb-36 bg-bg text-text overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-32 pb-12 lg:pt-36 lg:pb-16">
       {/* ── 1. Background System (Low-Opacity Depth) ───────────── */}
       <BackgroundGlow position="top-center" intensity="medium" className="glow-pulse opacity-75" />
-      <GridBackground mask="fade-bottom" />
-      <NoiseTexture opacity={0.02} />
 
       {/* Soft Radial Vignette Overlay */}
       <div

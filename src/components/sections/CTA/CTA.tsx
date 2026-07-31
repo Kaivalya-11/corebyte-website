@@ -11,7 +11,7 @@ import { Heading } from "@/components/ui/Heading";
 import { FadeUp } from "@/components/animations";
 
 /**
- * CoreByte Studios Final CTA Section — Creative Director Redesign
+ * CoreByte Studios Final CTA Section — Sprint 5.1 Editorial Redesign
  *
  * Story Question: "Why should you contact us?"
  * Narrative Role: Act IV — Emotional Conversion Climax
@@ -23,39 +23,56 @@ import { FadeUp } from "@/components/animations";
  */
 export function CTA() {
   return (
-    <section id="contact" className="relative py-28 lg:py-36 bg-bg text-text overflow-hidden">
+    <section id="contact" className="relative py-16 lg:py-20">
       <Container>
         <FadeUp>
-          <GlassCard className="relative p-10 sm:p-14 lg:p-16 text-center overflow-hidden border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.7)]">
+          <GlassCard className="relative p-10 sm:p-14 lg:p-20 text-center overflow-hidden border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.8)] rounded-3xl">
             {/* Ambient Radial High-Intensity Glow */}
-            <BackgroundGlow position="center" intensity="high" className="opacity-95" />
+            <BackgroundGlow position="center" intensity="high" className="opacity-100" />
+            
+            {/* Decorative Floating Elements */}
+            <div className="absolute top-10 left-10 hidden lg:block opacity-50 animate-pulse">
+              <div className="w-12 h-12 rounded-full bg-primary/20 blur-xl absolute -z-10" />
+              <Badge variant="outline" className="border-white/10 bg-white/5 backdrop-blur-md">
+                <span className="text-white/70">Next.js</span>
+              </Badge>
+            </div>
+            <div className="absolute bottom-16 right-12 hidden lg:block opacity-50 animate-bounce" style={{ animationDuration: '3s' }}>
+              <div className="w-16 h-16 rounded-full bg-primary/20 blur-xl absolute -z-10" />
+              <Badge variant="outline" className="border-white/10 bg-white/5 backdrop-blur-md">
+                <span className="text-white/70">AI-Powered</span>
+              </Badge>
+            </div>
 
             <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
               {/* Eyebrow Badge */}
-              <div className="mb-4 flex justify-center w-full">
-                <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
-                  Get Started
+              <div className="mb-6 flex justify-center w-full">
+                <Badge variant="primary" size="sm" className="px-4 py-1.5 text-xs font-bold tracking-widest uppercase shadow-glow">
+                  Start Your Journey
                 </Badge>
               </div>
 
               {/* Display Heading */}
-              <Heading level="h2" variant="display" align="center" className="text-balance">
+              <Heading level="h2" variant="display" align="center" className="text-balance leading-tight">
                 Let&apos;s Build Something <br className="hidden sm:inline" />
-                <span className="gradient-text">Great Together</span>
+                <span className="gradient-text">Extraordinary</span>
               </Heading>
 
               {/* Subtitle Paragraph */}
-              <p className="mt-4 text-text-muted/90 text-base sm:text-lg lg:text-xl leading-relaxed font-body max-w-xl text-balance mx-auto">
-                Ready to transform your ideas into digital reality? Partner with
-                our team for design, development, and scalable engineering.
+              <p className="mt-6 text-text-muted/90 text-base sm:text-lg lg:text-xl leading-relaxed font-body max-w-2xl text-balance mx-auto">
+                Ready to transform your vision into a digital masterpiece? Partner with
+                our elite team for world-class design, robust engineering, and AI integration.
               </p>
 
               {/* Dominant Primary Action Button */}
-              <div className="mt-8 flex justify-center">
+              <div className="mt-10 flex justify-center">
                 <Link href="mailto:hello@corebytestudios.com">
-                  <Button variant="primary" size="lg" className="group px-10 py-4.5 text-base md:text-lg shadow-glow">
-                    <span>Start Project</span>
-                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <Button variant="primary" size="lg" className="group px-12 py-5 text-base md:text-lg shadow-glow relative overflow-hidden">
+                    <span className="relative z-10 flex items-center gap-2 font-semibold">
+                      Start Project
+                      <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
                 </Link>
               </div>

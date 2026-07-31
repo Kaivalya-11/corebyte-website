@@ -11,3 +11,4 @@ export { FAQ_ITEMS } from "./faq";
 export { PROCESS_STEPS } from "./process";
 export { TECHNOLOGIES } from "./technologies";
 export { SOCIALS } from "./socials";
+export { WHY_COREBYTE } from "./why-corebyte";

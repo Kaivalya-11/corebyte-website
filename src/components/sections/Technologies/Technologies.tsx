@@ -7,14 +7,15 @@ import { SectionHeader } from "@/components/shared";
 import { TECHNOLOGIES } from "@/content/technologies";
 
 /**
- * CoreByte Studios Technologies Section — Creative Director Redesign
+ * CoreByte Studios Technologies Section — Sprint 5.1 Editorial Redesign
  *
  * Story Question: "How do we build it?"
  * Narrative Role: Act III — Showcase of Production Engineering Mastery
  *
  * Visual Craftsmanship:
  * - Generous section vertical rhythm (py-28 lg:py-36)
- * - Self-contained framed engineering stage (border-y border-white/10 bg-surface/40)
+ * - Self-contained framed engineering stage (border-y border-white/12 bg-surface/50 py-8 lg:py-12 shadow-inner)
+ * - Gradient mask fades emerging from left and dissolving on right
  * - High-contrast tech badges with subtle hover physics and gradient borders
  */
 export function Technologies() {
@@ -22,7 +23,7 @@ export function Technologies() {
   const marqueeItems = [...TECHNOLOGIES, ...TECHNOLOGIES];
 
   return (
-    <section id="technologies" className="relative py-28 lg:py-36 bg-bg text-text overflow-hidden">
+    <section id="technologies" className="relative py-16 lg:py-20">
       <Container>
         {/* Section Header Stage */}
         <SectionHeader
@@ -35,12 +36,13 @@ export function Technologies() {
       </Container>
 
       {/* Production Engineering Marquee Stage (Framed Band with 64–80px offset) */}
-      <div className="mt-16 lg:mt-20 relative w-full border-y border-white/10 bg-surface/40 py-8 lg:py-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_12%,white_88%,transparent)]">
-        <div className="animate-marquee flex items-center gap-4 sm:gap-6">
+      <div className="mt-16 lg:mt-20 relative w-full border-y border-white/12 bg-surface/50 py-10 lg:py-16 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)] shadow-inner flex flex-col gap-6">
+        {/* Row 1: Forward Marquee */}
+        <div className="animate-marquee flex items-center gap-4 sm:gap-6 w-max">
           {marqueeItems.map((tech, index) => (
             <GlassCard
-              key={`${tech.id}-${index}`}
-              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 glow-border bg-surface/90 opacity-90 hover:opacity-100 hover:scale-105 hover:border-primary/50 transition-all duration-300 select-none cursor-pointer shadow-sm"
+              key={`row1-${tech.id}-${index}`}
+              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 glow-border bg-surface/90 opacity-90 hover:opacity-100 hover:scale-105 hover:border-primary/50 transition-all duration-300 select-none cursor-pointer shadow-md"
             >
               <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
                 <Image
@@ -48,7 +50,30 @@ export function Technologies() {
                   alt={`${tech.name} logo`}
                   width={28}
                   height={28}
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+              <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">
+                {tech.name}
+              </span>
+            </GlassCard>
+          ))}
+        </div>
+        
+        {/* Row 2: Reverse Marquee */}
+        <div className="animate-marquee flex items-center gap-4 sm:gap-6 w-max" style={{ animationDirection: "reverse" }}>
+          {marqueeItems.map((tech, index) => (
+            <GlassCard
+              key={`row2-${tech.id}-${index}`}
+              className="flex items-center gap-3.5 px-6 py-3.5 shrink-0 glow-border bg-surface/90 opacity-90 hover:opacity-100 hover:scale-105 hover:border-primary/50 transition-all duration-300 select-none cursor-pointer shadow-md"
+            >
+              <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
+                <Image
+                  src={tech.icon}
+                  alt={`${tech.name} logo`}
+                  width={28}
+                  height={28}
+                  className="w-full h-auto object-contain"
                 />
               </div>
               <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">

@@ -108,9 +108,8 @@ function Logo({
         alt={alt}
         width={finalWidth}
         height={finalHeight}
-        priority={priority}
-        style={{ width: "auto", height: "auto" }}
-        className="object-contain"
+        priority={priority || asset.src === "/images/brand/Full-logo-white-nobg.png"}
+        className={cn("w-auto h-auto object-contain", className)}
       />
     </div>
   );

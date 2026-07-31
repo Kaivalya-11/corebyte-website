@@ -123,54 +123,54 @@
    LAYER 3: Base / Reset
    ─────────────────────────────────────────────────────── */
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  height: 100%;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    height: 100%;
+  }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-  font-weight: 400;
-  min-height: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Prevent layout shift from scrollbar appearing */
-  overflow-x: hidden;
-}
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent layout shift from scrollbar appearing */
+    overflow-x: hidden;
+  }
 
-/* ── Headings ─────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), system-ui, sans-serif;
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-}
+  /* ── Headings ─────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
 
-/* ── Links ────────────────────────────────────── */
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  /* ── Links ────────────────────────────────────── */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-/* ── Images ───────────────────────────────────── */
-img, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+  /* ── Images ───────────────────────────────────── */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
 
-/* ── Box sizing ───────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  /* ── Box sizing ───────────────────────────────── */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 }
 
 /* ───────────────────────────────────────────────────────
@@ -237,105 +237,107 @@ img, video {
    multiple components and not expressible cleanly in Tailwind.
    ─────────────────────────────────────────────────────── */
 
-/* ── Gradient: Primary Brand ─────────────────── */
-/* Blue → Purple gradient used on buttons, CTA section, text accents */
-.gradient-primary {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
-}
+@layer utilities {
+  /* ── Gradient: Primary Brand ─────────────────── */
+  /* Blue → Purple gradient used on buttons, CTA section, text accents */
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%
+    );
+  }
 
-/* ── Gradient Text ────────────────────────────── */
-/* Apply to inline text that should render with the brand gradient */
-.gradient-text {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-accent) 50%,
-    var(--color-secondary) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
+  /* ── Gradient Text ────────────────────────────── */
+  /* Apply to inline text that should render with the brand gradient */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 50%,
+      var(--color-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 
-/* ── Glass Surface ────────────────────────────── */
-/* Glassmorphism — used on cards, navbar after scroll */
-.glass {
-  background: rgba(13, 17, 23, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
-}
+  /* ── Glass Surface ────────────────────────────── */
+  /* Glassmorphism — used on cards, navbar after scroll */
+  .glass {
+    background: rgba(13, 17, 23, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+  }
 
-/* ── Glass Strong ─────────────────────────────── */
-/* Stronger glass for modals and overlays */
-.glass-strong {
-  background: rgba(13, 17, 23, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--color-border-strong);
-}
+  /* ── Glass Strong ─────────────────────────────── */
+  /* Stronger glass for modals and overlays */
+  .glass-strong {
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--color-border-strong);
+  }
 
-/* ── Container ────────────────────────────────── */
-/* Page-width constraint with horizontal padding */
-.container-site {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 5vw, 5rem);
-}
+  /* ── Container ────────────────────────────────── */
+  /* Page-width constraint with horizontal padding */
+  .container-site {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 5vw, 5rem);
+  }
 
-/* ── Section Spacing ──────────────────────────── */
-/* Consistent vertical rhythm between sections */
-.section-padding {
-  padding-top: clamp(4rem, 8vw, var(--section-padding-y));
-  padding-bottom: clamp(4rem, 8vw, var(--section-padding-y));
-}
+  /* ── Section Spacing ──────────────────────────── */
+  /* Consistent vertical rhythm between sections */
+  .section-padding {
+    padding-top: clamp(4rem, 8vw, var(--section-padding-y));
+    padding-bottom: clamp(4rem, 8vw, var(--section-padding-y));
+  }
 
-/* ── Glow Border ──────────────────────────────── */
-/* Animated glow border — used on service cards hover */
-.glow-border {
-  border: 1px solid var(--color-border);
-  transition:
-    border-color var(--duration-medium) var(--ease-out),
-    box-shadow var(--duration-medium) var(--ease-out);
-}
+  /* ── Glow Border ──────────────────────────────── */
+  /* Animated glow border — used on service cards hover */
+  .glow-border {
+    border: 1px solid var(--color-border);
+    transition:
+      border-color var(--duration-medium) var(--ease-out),
+      box-shadow var(--duration-medium) var(--ease-out);
+  }
 
-.glow-border:hover {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: var(--shadow-glow);
-}
+  .glow-border:hover {
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: var(--shadow-glow);
+  }
 
-/* ── Glow Pulse ──────────────────────────────── */
-/* Slow ambient opacity pulse for hero background glow */
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
-}
+  /* ── Glow Pulse ──────────────────────────────── */
+  /* Slow ambient opacity pulse for hero background glow */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
 
-.glow-pulse {
-  animation: glow-pulse 8s ease-in-out infinite;
-}
+  .glow-pulse {
+    animation: glow-pulse 8s ease-in-out infinite;
+  }
 
-/* ── Marquee Animation ───────────────────────── */
-/* Continuous horizontal scroll for tech stack marquee */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
+  /* ── Marquee Animation ───────────────────────── */
+  /* Continuous horizontal scroll for tech stack marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* ── Reduced Motion ───────────────────────────── */
