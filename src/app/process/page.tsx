@@ -10,6 +10,9 @@ import { TechnologyShowcase } from "@/components/shared";
 export const metadata = {
   title: "Our Process | CoreByte Studios",
   description: "Learn how CoreByte Studios transforms ideas into production-ready digital products through a structured engineering process.",
+  alternates: {
+    canonical: "/process",
+  },
 };
 
 export default function ProcessPage() {

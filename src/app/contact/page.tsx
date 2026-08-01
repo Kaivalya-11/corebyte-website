@@ -11,6 +11,9 @@ import {
 export const metadata = {
   title: "Contact Us | CoreByte Studios",
   description: "Get in touch with CoreByte Studios. We are available for new projects including enterprise web applications, AI integrations, and digital products.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

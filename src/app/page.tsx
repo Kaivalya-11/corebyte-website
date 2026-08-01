@@ -6,6 +6,13 @@ import { WhyCoreByte } from "@/components/sections/WhyCoreByte";
 import { Technologies } from "@/components/sections/Technologies";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

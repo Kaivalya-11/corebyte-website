@@ -11,6 +11,9 @@ import {
 export const metadata = {
   title: "About | CoreByte Studios",
   description: "Learn about CoreByte Studios' engineering philosophy, core principles, and the standards we live by to deliver exceptional digital products.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

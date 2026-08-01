@@ -7,10 +7,10 @@ export const SITE_CONFIG = {
   name: "CoreByte Studios",
   tagline: "Transforming Ideas Into Digital Reality",
   description:
-    "CoreByte Studios is a premium software studio. We design, develop, and scale modern websites, web applications, and AI-powered digital solutions that help businesses grow.",
-  url: "https://corebyteStudios.com",
-  contactEmail: "hello@corebyteStudios.com",
-  ogImage: "/images/og/og-default.png",
+    "CoreByte Studios is a modern software agency building premium websites, web applications, AI solutions, and digital experiences for startups and businesses.",
+  url: "https://corebytestudios.com",
+  contactEmail: "hello@corebytestudios.com",
+  ogImage: "/og-image.png",
   twitterHandle: "@corebyteStudios",
 } as const;
 
