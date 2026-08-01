@@ -3,7 +3,7 @@
 import { useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown01Icon } from "hugeicons-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/shared";
 import { DURATION, EASE } from "@/animations";
@@ -64,7 +64,7 @@ export function FAQ() {
                     {item.question}
                   </h3>
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-transform duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:bg-primary/20 group-data-[state=open]:border-primary/30 group-data-[state=open]:text-primary">
-                    <ChevronDown className="h-4 w-4" />
+                    <ArrowDown01Icon className="h-4 w-4" />
                   </div>
                 </Accordion.Trigger>
               </Accordion.Header>

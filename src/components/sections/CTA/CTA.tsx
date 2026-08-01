@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight01Icon } from "hugeicons-react";
 import { BackgroundGlow } from "@/components/brand";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -21,7 +21,26 @@ import { FadeUp } from "@/components/animations";
  * - Perfect vertical hierarchy: Badge → Display Heading → Subtitle → Action Button
  * - Content-driven height eliminating empty voids
  */
-export function CTA() {
+export interface CTAProps {
+  badge?: string;
+  title?: React.ReactNode;
+  description?: string;
+  primaryAction?: { label: string; href: string };
+  secondaryAction?: { label: string; href: string };
+}
+
+export function CTA({
+  badge = "Start Your Journey",
+  title = (
+    <>
+      Let&apos;s Build Something <br className="hidden sm:inline" />
+      <span className="gradient-text">Extraordinary</span>
+    </>
+  ),
+  description = "Ready to transform your vision into a digital masterpiece? Partner with our elite team for world-class design, robust engineering, and AI integration.",
+  primaryAction = { label: "Start Project", href: "mailto:hello@corebytestudios.com" },
+  secondaryAction
+}: CTAProps) {
   return (
     <section id="contact" className="relative py-16 lg:py-20">
       <Container>
@@ -48,33 +67,39 @@ export function CTA() {
               {/* Eyebrow Badge */}
               <div className="mb-6 flex justify-center w-full">
                 <Badge variant="primary" size="sm" className="px-4 py-1.5 text-xs font-bold tracking-widest uppercase shadow-glow">
-                  Start Your Journey
+                  {badge}
                 </Badge>
               </div>
 
               {/* Display Heading */}
               <Heading level="h2" variant="display" align="center" className="leading-[1.15] py-2">
-                Let&apos;s Build Something <br className="hidden sm:inline" />
-                <span className="gradient-text">Extraordinary</span>
+                {title}
               </Heading>
 
               {/* Subtitle Paragraph */}
               <p className="mt-6 text-text-muted/90 text-base sm:text-lg lg:text-xl leading-relaxed font-body max-w-2xl text-balance mx-auto">
-                Ready to transform your vision into a digital masterpiece? Partner with
-                our elite team for world-class design, robust engineering, and AI integration.
+                {description}
               </p>
 
               {/* Dominant Primary Action Button */}
-              <div className="mt-10 flex justify-center">
-                <Link href="mailto:hello@corebytestudios.com">
+              <div className="mt-10 flex flex-wrap justify-center items-center gap-4">
+                <Link href={primaryAction.href}>
                   <Button variant="primary" size="lg" className="group px-12 py-5 text-base md:text-lg shadow-glow relative overflow-hidden">
                     <span className="relative z-10 flex items-center gap-2 font-semibold">
-                      Start Project
-                      <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      {primaryAction.label}
+                      <ArrowRight01Icon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
                 </Link>
+
+                {secondaryAction && (
+                  <Link href={secondaryAction.href}>
+                    <Button variant="outline" size="lg" className="px-12 py-5 text-base md:text-lg backdrop-blur-md">
+                      {secondaryAction.label}
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </GlassCard>

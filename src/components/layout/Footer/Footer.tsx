@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Code2, Users, Globe, Mail } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { CodeIcon, UserGroupIcon, GlobeIcon, Mail01Icon } from "hugeicons-react";
 import { Logo } from "@/components/brand";
 import { Container } from "@/components/ui/Container";
 import { NAV_LINKS } from "@/content/navigation";
@@ -14,11 +13,11 @@ import { cn } from "@/lib/cn";
 // Icon resolver for social links
 // ─────────────────────────────────────────────────────────────
 
-const SOCIAL_ICON_MAP: Record<string, LucideIcon> = {
-  Github: Code2,
-  Linkedin: Users,
-  Instagram: Globe,
-  Mail,
+const SOCIAL_ICON_MAP: Record<string, React.ElementType> = {
+  Github: CodeIcon,
+  Linkedin: UserGroupIcon,
+  Instagram: GlobeIcon,
+  Mail: Mail01Icon,
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -149,7 +148,7 @@ function Footer() {
                 className="bg-primary/20 hover:bg-primary/30 text-primary p-2.5 rounded-lg border border-primary/20 transition-colors"
                 aria-label="Subscribe"
               >
-                <Globe className="w-4 h-4" />
+                <GlobeIcon className="w-4 h-4" />
               </button>
             </form>
           </div>

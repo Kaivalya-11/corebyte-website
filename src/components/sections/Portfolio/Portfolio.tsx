@@ -3,11 +3,16 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/shared";
 import { StaggerChildren, StaggerItem } from "@/components/animations";
+import { useState } from "react";
 import { PORTFOLIO_PROJECTS } from "@/content/portfolio";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectModal } from "./ProjectModal";
+import type { PortfolioProject } from "@/types/content";
 import { cn } from "@/lib/cn";
 
 export function Portfolio() {
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+
   return (
     <section id="portfolio" className="relative py-16 lg:py-24">
       {/* Subtle Background Glow */}
@@ -39,13 +44,22 @@ export function Portfolio() {
 
               return (
                 <StaggerItem key={project.id} className={colClasses}>
-                  <ProjectCard project={project} />
+                  <ProjectCard 
+                    project={project} 
+                    onViewDetails={setSelectedProject}
+                  />
                 </StaggerItem>
               );
             })}
           </div>
         </StaggerChildren>
       </Container>
+
+      {/* Project Details Modal */}
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 }

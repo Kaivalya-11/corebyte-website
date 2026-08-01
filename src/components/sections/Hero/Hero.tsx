@@ -1,18 +1,16 @@
 "use client";
 
 import {
-  ArrowRight,
-  Check,
-  Code2,
-  Cpu,
-  Lock,
-  Rocket,
-  ShieldCheck,
-  Sparkles,
-  Terminal,
-  Zap,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  ArrowRight01Icon,
+  CheckmarkBadge01Icon,
+  CodeIcon,
+  CpuIcon,
+  LockKeyIcon,
+  Rocket01Icon,
+  Shield01Icon,
+  SparklesIcon,
+  FlashIcon,
+} from "hugeicons-react";
 import {
   BackgroundGlow,
   BrandMark,
@@ -30,11 +28,11 @@ import type { HeroWidget } from "@/types/content";
 // Icon resolver — maps content string names to Lucide components
 // ─────────────────────────────────────────────────────────────
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Sparkles,
-  Zap,
-  ShieldCheck,
-  Rocket,
+const ICON_MAP: Record<string, React.ElementType> = {
+  Sparkles: SparklesIcon,
+  Zap: FlashIcon,
+  ShieldCheck: Shield01Icon,
+  Rocket: Rocket01Icon,
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -144,7 +142,7 @@ export function Hero() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-1">
                 <Button variant="primary" size="lg" className="group">
                   <span>{cta.primary}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 shrink-0" />
+                  <ArrowRight01Icon className="w-4 h-4 transition-transform group-hover:translate-x-1 shrink-0" />
                 </Button>
                 <Button variant="secondary" size="lg">
                   {cta.secondary}
@@ -164,7 +162,7 @@ export function Hero() {
                     <StaggerItem key={indicator}>
                       <div className="flex items-center gap-2.5 shrink-0">
                         <div className="p-1 rounded-full bg-primary/15 text-primary border border-primary/20 shrink-0 flex items-center justify-center">
-                          <Check className="w-3.5 h-3.5" />
+                          <CheckmarkBadge01Icon className="w-3.5 h-3.5" />
                         </div>
                         <span className="leading-none text-text-muted">{indicator}</span>
                       </div>
@@ -194,7 +192,7 @@ export function Hero() {
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
                   </div>
                   <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/50 border border-white/10 text-xs text-text-muted font-mono">
-                    <Lock className="w-3 h-3 text-success" />
+                    <LockKeyIcon className="w-3 h-3 text-success" />
                     <span className="text-text/90">{workspace.url}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs text-text-muted font-mono">
@@ -209,7 +207,7 @@ export function Hero() {
                   <div className="flex items-center justify-between pb-3 border-b border-white/10">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/15 text-primary border border-primary/20 text-xs font-semibold">
-                        <Terminal className="w-3.5 h-3.5" />
+                        <CodeIcon className="w-3.5 h-3.5" />
                         <span>{workspace.activeTab}</span>
                       </div>
                       {workspace.inactiveTabs.map((tab) => (
@@ -251,11 +249,11 @@ export function Hero() {
                   {/* Status Metrics Bar */}
                   <div className="flex items-center justify-between pt-1 text-xs text-text-muted border-t border-white/5">
                     <div className="flex items-center gap-2">
-                      <Code2 className="w-3.5 h-3.5 text-primary" />
+                      <CodeIcon className="w-3.5 h-3.5 text-primary" />
                       <span>{workspace.footerLeft}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Cpu className="w-3.5 h-3.5 text-secondary" />
+                      <CpuIcon className="w-3.5 h-3.5 text-secondary" />
                       <span>{workspace.footerRight}</span>
                     </div>
                   </div>

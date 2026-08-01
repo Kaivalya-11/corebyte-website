@@ -99,7 +99,8 @@ function Logo({
 }: LogoProps) {
   const asset = ASSET_MAP[variant][theme];
   const finalWidth = width ?? asset.width;
-  const finalHeight = height ?? asset.height;
+  const scale = finalWidth / asset.width;
+  const finalHeight = height ?? Math.round(asset.height * scale);
 
   return (
     <div className={cn("inline-flex items-center shrink-0 select-none", className)}>
@@ -109,8 +110,7 @@ function Logo({
         width={finalWidth}
         height={finalHeight}
         priority={priority || asset.src === "/images/brand/Full-logo-white-nobg.png"}
-        className={cn("w-auto h-auto object-contain", className)}
-        style={{ width: "auto", height: "auto" }}
+        className={cn("object-contain", className)}
       />
     </div>
   );

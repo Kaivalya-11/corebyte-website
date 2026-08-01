@@ -51,8 +51,7 @@ export function Technologies() {
                   alt={`${tech.name} logo`}
                   width={28}
                   height={28}
-                  className="w-full h-auto object-contain"
-                  style={{ width: "100%", height: "auto" }}
+                  className="object-contain"
                 />
               </div>
               <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">
@@ -76,8 +75,7 @@ export function Technologies() {
                   alt={`${tech.name} logo`}
                   width={28}
                   height={28}
-                  className="w-full h-auto object-contain"
-                  style={{ width: "100%", height: "auto" }}
+                  className="object-contain"
                 />
               </div>
               <span className="font-heading text-sm sm:text-base font-medium text-text whitespace-nowrap">

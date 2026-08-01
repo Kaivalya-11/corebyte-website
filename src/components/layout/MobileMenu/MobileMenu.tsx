@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight01Icon, Cancel01Icon } from "hugeicons-react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/brand";
 import { NAV_LINKS } from "@/content/navigation";
@@ -69,7 +69,7 @@ export function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) 
               className="p-2.5 rounded-full bg-white/5 border border-white/10 text-text-muted hover:text-text hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-primary"
               aria-label="Close navigation menu"
             >
-              <X className="w-5 h-5" />
+              <Cancel01Icon className="w-5 h-5" />
             </button>
           </div>
 
@@ -110,7 +110,7 @@ export function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) 
             <Link href="#contact" onClick={onClose} className="block w-full">
               <Button variant="primary" size="lg" className="w-full justify-between text-base py-4">
                 <span>Start Project</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight01Icon className="w-4 h-4" />
               </Button>
             </Link>
             <p className="text-xs text-text-muted text-center font-body">

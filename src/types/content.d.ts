@@ -35,12 +35,16 @@ export interface PortfolioProject {
   title: string;
   category: string;
   description: string;
-  technologies: string[];
+  overview: string;
+  features: string[];
+  techStack: string[];
   image: string;
   colSpan: "full" | "half" | "featured"; // semantic grid mapping
   status: string;
   liveUrl: string;
-  buttonLabel: string;
+  primaryAction: string;
+  secondaryAction: string;
+  githubUrl?: string;
 }
 
 // FAQ

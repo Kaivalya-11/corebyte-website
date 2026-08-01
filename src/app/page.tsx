@@ -9,7 +9,7 @@ import { CTA } from "@/components/sections/CTA";
 
 export default function Home() {
   return (
-    <main className="relative bg-bg text-text overflow-hidden">
+    <main id="main-content" className="relative bg-bg text-text overflow-hidden pt-[104px]">
       {/* Universal Canvas Backgrounds */}
       <GridBackground mask="fade-bottom" />
       <NoiseTexture opacity={0.02} />

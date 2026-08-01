@@ -1,18 +1,17 @@
 "use client";
 
-import { Shield, Sparkles, Zap, Code } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Shield01Icon, SparklesIcon, FlashIcon, CodeIcon } from "hugeicons-react";
 import { Container } from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Heading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { FloatIn, StaggerChildren, StaggerItem } from "@/components/animations";
 import { WHY_COREBYTE } from "@/content";
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Zap,
-  Sparkles,
-  Shield,
-  Code,
+const ICON_MAP: Record<string, React.ElementType> = {
+  Zap: FlashIcon,
+  Sparkles: SparklesIcon,
+  Shield: Shield01Icon,
+  Code: CodeIcon,
 };
 
 export function WhyCoreByte() {
@@ -24,7 +23,7 @@ export function WhyCoreByte() {
           {/* Left Content Area */}
           <FloatIn direction="left" className="lg:col-span-5 flex flex-col justify-center">
             <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+              <SparklesIcon className="w-3.5 h-3.5" />
               <span>The CoreByte Advantage</span>
             </div>
             <Heading level="h2" variant="section" className="mb-6">
@@ -51,7 +50,7 @@ export function WhyCoreByte() {
           <div className="lg:col-span-7 lg:pl-10">
             <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-6" staggerDelay={0.1}>
               {WHY_COREBYTE.map((item, index) => {
-                const IconComponent = ICON_MAP[item.icon] || Code;
+                const IconComponent = ICON_MAP[item.icon] || CodeIcon;
                 return (
                   <StaggerItem key={item.id} className={index % 2 === 1 ? "sm:mt-12" : ""}>
                     <GlassCard hover className="p-8 h-full bg-surface/40 hover:bg-surface/60 transition-all duration-300 border-white/10 hover:border-primary/30 hover:-translate-y-1 hover:shadow-glow group">

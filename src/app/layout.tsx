@@ -24,6 +24,10 @@ const inter = Inter({
 });
 
 // ── Site Metadata ─────────────────────────────────────────
+export const viewport = {
+  themeColor: "#050505", // Matching bg-bg
+};
+
 export const metadata: Metadata = {
   title: {
     default: SITE_CONFIG.name,
@@ -101,6 +105,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-bg text-text">
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-primary focus:text-white font-body font-bold rounded-br-lg top-0 left-0 outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to main content
+        </a>
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu01Icon } from "hugeicons-react";
 import { Logo } from "@/components/brand";
 import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
@@ -93,7 +93,7 @@ function Navbar() {
               aria-label="Open Navigation Menu"
               aria-expanded={mobileOpen}
             >
-              <Menu className="w-5 h-5" />
+              <Menu01Icon className="w-5 h-5" />
             </button>
           </div>
         </div>

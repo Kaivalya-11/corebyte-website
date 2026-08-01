@@ -69,7 +69,7 @@ function SectionHeader({
     >
       {/* 1. Badge (Centered) */}
       {eyebrow && (
-        <StaggerItem className="mb-3 flex justify-center w-full">
+        <StaggerItem className={cn("mb-3 flex w-full", isCenter ? "justify-center" : "justify-start")}>
           <Badge variant="primary" size="sm" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
             {eyebrow}
           </Badge>

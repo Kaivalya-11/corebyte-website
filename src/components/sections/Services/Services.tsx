@@ -1,13 +1,12 @@
 "use client";
 
 import {
-  Check,
-  Globe,
-  LayoutDashboard,
-  Palette,
-  Sparkles,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  CheckmarkBadge01Icon,
+  GlobeIcon,
+  DashboardSquare01Icon,
+  PaintBoardIcon,
+  SparklesIcon,
+} from "hugeicons-react";
 import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Heading } from "@/components/ui/Heading";
@@ -19,11 +18,11 @@ import { SERVICES } from "@/content/services";
 // Icon Resolver
 // ─────────────────────────────────────────────────────────────
 
-const SERVICE_ICON_MAP: Record<string, LucideIcon> = {
-  Globe,
-  LayoutDashboard,
-  Palette,
-  Sparkles,
+const SERVICE_ICON_MAP: Record<string, React.ElementType> = {
+  Globe: GlobeIcon,
+  LayoutDashboard: DashboardSquare01Icon,
+  Palette: PaintBoardIcon,
+  Sparkles: SparklesIcon,
 };
 
 /**
@@ -98,7 +97,7 @@ export function Services() {
                       {service.features.map((feature) => (
                         <div key={feature} className="flex items-center gap-2.5 text-xs text-text/90 font-body">
                           <div className="p-0.5 rounded-full bg-primary/20 text-primary shrink-0">
-                            <Check className="w-3.5 h-3.5" />
+                            <CheckmarkBadge01Icon className="w-3.5 h-3.5" />
                           </div>
                           <span className="font-medium">{feature}</span>
                         </div>
